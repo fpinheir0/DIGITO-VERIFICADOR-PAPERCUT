@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGITO VERIFICADOR PAPERCUT</title>
+</head>
+<body>
+    <form name="form">
+        <table border="0" cellspacing="5" cellpadding="5">
+            <tbody>
+                <tr>
+                    <td class="f10pt" align="left">
+                        <b>Digite aqui o RE:</b><br>
+                        <input type="text" name="Numero" size="30">
+                    </td>
+                    <td class="f10pt" align="left" colspan="2">
+                        <b>Dígito Verificador:</b><br>
+                        <input type="text" name="digito" size="10">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="f10pt">
+                        <input type="button" value="Calcular" onclick="CalcRE()">&nbsp;
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="f10pt" align="left">
+                        <b>Quantidade de Dígitos:</b><br>
+                        <input type="text" name="numDig" size="10" maxlength="1">
+                    </td>
+                    <td class="f10pt" align="left">
+                        <b>Limite de Multiplicação:</b><br>
+                        <input type="text" name="limMult" size="10" maxlength="2">
+                    </td>
+                    <td class="f10pt" align="left">
+                        <b>Soma X10:</b><br>
+                        <input type="checkbox" name="somaX10">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="f10pt">
+                        <input type="button" value=" Genérico " onclick="Calcula()">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</body>
+</html>
