@@ -5,8 +5,81 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DIGITO VERIFICADOR PAPERCUT</title>
+
+    <script language="javascript" src="https://www.cjdinfo.com.br/includes/basico.js"></script>
+    <script language="javascript" src="https://www.cjdinfo.com.br/includes/dinamico.js"></script>
 </head>
 <body>
+
+      <!-- INICIO SCRIPT CALCULAR DIGITO-->
+  <script language="JavaScript">
+
+    function CalcRE() {
+
+      var f = document.form;
+
+      f.limMult.value = "9";
+      f.numDig.value = "1";
+      f.somaX10.checked = true;
+      Calcula();
+    }
+
+    function Calcula() {
+
+      var f = document.form;
+      var dado = f.Numero.value;
+      var limMult = f.limMult.value;
+      var numDig = f.numDig.value;
+      var somaX10 = f.somaX10.checked;
+
+      if (!isStrNum(dado, 0)) {
+        alert("Número inválido.");
+        f.Numero.focus();
+        return;
+      }
+      if (!isStrNum(numDig, 0)) {
+        alert("Quantidade de dígitos inválido.");
+        f.numDig.focus();
+        return;
+      }
+      if (!somaX10 && numDig != 1) {
+        alert("Sem a Soma X10 só é possível calcular 1 único dígito.");
+        f.numDig.focus();
+        return;
+      }
+      if (!isStrNum(limMult, 0)) {
+        alert("Limite de Multiplicação inválido.");
+        f.limMult.focus();
+        return;
+      }
+      f.digito.value = calculaDigitoMod11(dado, numDig, limMult, somaX10);
+    }
+
+    function calculaDigitoMod11(dado, numDig, limMult, x10) {
+
+      var mult, soma, i, n, dig;
+
+      if (!x10) numDig = 1;
+      for (n = 1; n <= numDig; n++) {
+        soma = 0;
+        mult = 2;
+        for (i = dado.length - 1; i >= 0; i--) {
+          soma += (mult * parseInt(dado.charAt(i)));
+          if (++mult > limMult) mult = 2;
+        }
+        if (x10) {
+          dig = ((soma * 10) % 11) % 10;
+        } else {
+          dig = soma % 11;
+          if (dig == 10) dig = "X";
+        }
+        dado += (dig);
+      }
+      return dado.substr(dado.length - numDig, numDig);
+    }
+  </script>
+
+  <!-- FINAL SCRIPT CALCULAR DIGITO -->
     <form name="form">
         <table border="0" cellspacing="5" cellpadding="5">
             <tbody>
